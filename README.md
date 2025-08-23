@@ -1,8 +1,6 @@
 # 🎁 Amigo Secreto
 
-Este é um projeto simples e divertido de **Amigo Secreto** desenvolvido com **HTML**, **CSS** e **JavaScript** puro. Com ele, você pode adicionar nomes de amigos a uma lista e sortear aleatoriamente um nome para revelar o amigo secreto!
-
-## 📸 Captura de Tela
+Este é um projeto simples e divertido de Amigo Secreto desenvolvido com HTML, CSS e JavaScript puro. Com ele, você pode adicionar nomes de amigos a uma lista, remover nomes se necessário e sortear aleatoriamente todos os amigos, garantindo que ninguém tire a si mesmo.
 
 ![Captura de Tela](assets/amigo-secreto.png)
 
@@ -10,12 +8,22 @@ Este é um projeto simples e divertido de **Amigo Secreto** desenvolvido com **H
 
 ## 🚀 Funcionalidades
 
-- ✅ Adicionar nomes à lista de amigos.
-- ✅ Evitar nomes duplicados.
-- ✅ Exibir os nomes adicionados em uma lista numerada.
-- ✅ Sortear aleatoriamente um amigo secreto da lista.
-- ✅ Interface amigável e responsiva.
-
+- Adicionar nomes à lista de amigos
+- Evitar nomes duplicados
+- Remover nomes da lista (botão de lixeira)
+- Exibir os nomes adicionados em uma lista numerada
+- Sortear todos os amigos de forma aleatória, garantindo que ninguém tire a si mesmo
+- Resultado do sorteio exibido em lista organizada
+- Interface amigável e responsiva
+- Persistência da lista usando localStorage (não se perde ao atualizar a página)
+- Adicionar nomes à lista de amigos
+- Evitar nomes duplicados
+- Remover nomes da lista (botão de lixeira)
+- Exibir os nomes adicionados em uma lista numerada
+- Sortear todos os amigos de forma aleatória, garantindo que ninguém tire a si mesmo
+- Resultado do sorteio exibido em lista organizada
+- Interface amigável e responsiva
+- Persistência da lista usando localStorage (não se perde ao atualizar a página)
 ---
 
 ## 🛠️ Tecnologias Utilizadas
@@ -56,17 +64,19 @@ amigo-secreto/
 
 - Nomes em branco não são permitidos.
 - Nomes repetidos não são adicionados.
-- Apenas um nome é sorteado por vez.
-- O resultado do sorteio aparece abaixo da lista.
-- 
+- É possível remover nomes adicionados clicando no ícone de lixeira.
+- O sorteio ocorre para todos os amigos de uma vez, garantindo que ninguém tire a si mesmo.
+- O resultado do sorteio é exibido em uma lista organizada abaixo da lista de amigos.
+- A lista de amigos é armazenada no navegador usando localStorage, permanecendo mesmo após atualizar a página.
+
 
 ## ✨ Melhorias Futuras (Sugestões)
 
-- Adicionar a lógica completa de amigo secreto (ex: sorteio de pares sem repetição).
-- Opção de reiniciar a lista.
-- Exportar os pares sorteados em PDF ou salvar localmente.
+- Exportar os pares sorteados em PDF ou CSV.
+- Adicionar tema claro/escuro.
+- Criar modal ou animações para revelar os amigos sorteados de forma divertida.
 - Responsividade total para dispositivos móveis.
-- 
+  
 
 ## 🤝 Contribuição
 
