@@ -1,10 +1,16 @@
-let listaDeAmigos = [];
+let listaDeAmigos = JSON.parse(localStorage.getItem('amigos')) || [];
 
+const input = document.getElementById('amigo');
+const listaElement = document.getElementById('listaAmigos');
+const resultadoContainer = document.getElementById('resultadoContainer');
+
+atualizarLista();
+
+// Adicionar amigo
 function adicionarAmigo() {
-    input = document.getElementById('amigo');
-    nome = input.value.trim();
+    const nome = input.value.trim();
 
-    if (nome === '') {
+    if (!nome) {
         alert('Por favor, digite um nome válido.');
         return;
     }
@@ -16,36 +22,69 @@ function adicionarAmigo() {
     }
 
     listaDeAmigos.push(nome);
+    salvarLista();
     atualizarLista();
     input.value = '';
     input.focus();
 }
 
-
+// Atualizar lista na tela
 function atualizarLista() {
-    ul = document.getElementById('listaAmigos');
-    ul.innerHTML = '';
-
+    listaElement.innerHTML = '';
     listaDeAmigos.forEach((amigo, index) => {
-        li = document.createElement('li');
-        li.textContent = `${index + 1}. ${amigo}`;
-        ul.appendChild(li);
+        const li = document.createElement('li');
+        li.textContent = `${index + 1}. ${amigo} `;
+        
+        // Botão para remover
+        const removerBtn = document.createElement('button');
+        removerBtn.textContent = '🗑️';
+        removerBtn.setAttribute('aria-label', `Remover ${amigo}`);
+        removerBtn.onclick = () => {
+            listaDeAmigos.splice(index, 1);
+            salvarLista();
+            atualizarLista();
+        };
+
+        li.appendChild(removerBtn);
+        listaElement.appendChild(li);
     });
 }
 
-function sortearAmigo() {
-    resultado = document.getElementById('resultado');
-    resultado.innerHTML = '';
+// Salvar lista no localStorage
+function salvarLista() {
+    localStorage.setItem('amigos', JSON.stringify(listaDeAmigos));
+}
 
-    if (listaDeAmigos.length === 0) {
-        alert('Adicione pelo menos um nome antes de sortear.');
+// Sortear amigos
+function sortearTodos() {
+    if (listaDeAmigos.length < 2) {
+        alert('É necessário pelo menos 2 amigos para sortear.');
         return;
     }
 
-    indiceSorteado = Math.floor(Math.random() * listaDeAmigos.length);
-    amigoSorteado = listaDeAmigos[indiceSorteado];
+    let amigosDisponiveis = [...listaDeAmigos];
+    const sorteio = {};
 
-    li = document.createElement('li');
-    li.textContent = `O amigo secreto sorteado é: ${amigoSorteado}!`;
-    resultado.appendChild(li);
+    listaDeAmigos.forEach(amigo => {
+        let possiveis = amigosDisponiveis.filter(a => a !== amigo);
+        const escolhido = possiveis[Math.floor(Math.random() * possiveis.length)];
+        sorteio[amigo] = escolhido;
+        amigosDisponiveis = amigosDisponiveis.filter(a => a !== escolhido);
+    });
+
+    mostrarResultado(sorteio);
+}
+
+// Exibir resultado
+function mostrarResultado(sorteio) {
+    resultadoContainer.innerHTML = '<h3>Resultado do Amigo Secreto:</h3>';
+    const ul = document.createElement('ul');
+
+    for (const [amigo, escolhido] of Object.entries(sorteio)) {
+        const li = document.createElement('li');
+        li.textContent = `${amigo} tirou ${escolhido}`;
+        ul.appendChild(li);
+    }
+
+    resultadoContainer.appendChild(ul);
 }
